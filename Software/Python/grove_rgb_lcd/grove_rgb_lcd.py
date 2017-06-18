@@ -77,7 +77,8 @@ def textCommand(cmd):
 # set display text \n for second line(or auto wrap)     
 def setText(text):
     textCommand(0x01) # clear display
-    time.sleep(.05)
+    time.sleep(1)
+    
     textCommand(0x08 | 0x04) # display on, no cursor
     textCommand(0x28) # 2 lines
     time.sleep(.05)
@@ -119,10 +120,14 @@ def setText_norefresh(text):
 		
 # example code
 if __name__=="__main__":
-    setText_norefresh("Hello world\nThis is an LCD test")
+    setText("Hello World")
+    time.sleep(0.2)
     setRGB(0,128,64)
+    m = 0
     for c in range(0,255):
+        setText("Hello World"+str(m))
         setRGB(c,255-c,0)
-        time.sleep(0.01)
+        time.sleep(0.1)
+        m += 1
     setRGB(0,255,0)
-    setText_norefresh("Bye bye, this should wrap onto next line")
+    #setText("Bye bye, this should wrap onto next line")
