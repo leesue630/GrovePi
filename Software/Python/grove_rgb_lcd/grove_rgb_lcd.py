@@ -118,7 +118,7 @@ def setText_norefresh(text):
         bus.write_byte_data(DISPLAY_TEXT_ADDR,0x40,ord(c))
     for c in range(len(text), 32):
         bus.write_byte_data(DISPLAY_TEXT_ADDR,0x40,ord(' '))
-        if (c == 16):
+        if (c == 15):
             textCommand(0xc0)
 		
 # example code
@@ -132,11 +132,11 @@ if __name__=="__main__":
     setRGB(0,255,0)
     setText("Bye bye, this should wrap onto next line")
     '''
-    setText_norefresh('123456789012345678901234567890')
-    time.sleep(2)
+    setText_norefresh('01234567890123456789012345678901')
+    time.sleep(1)
     setRGB(0,0,0)
     setText_norefresh('Initial')
-    for c in range(0,250):
+    time.sleep(2)
+    for c in range(0,20):
         setText_norefresh(str(c))
         time.sleep(0.01)
-    
